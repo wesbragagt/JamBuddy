@@ -157,5 +157,41 @@
         </div>
 
         <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
+        <script type="text/javascript">
+        // grab values from the input fields and use those values to build an object
+        var Buddy = function(name, photo, scores){
+            this.name = name;
+            this.photo = photo;
+            this.scores = scores;
+            
+        }
+        $("#submit").on("click", function(event){
+event.preventDefault();
+var newBuddy = new Buddy(
+    $("#name").val().trim(),
+    $('#photo').val().trim(),
+    [
+        $('#q1').find(':selected').val(),
+        $('#q2').find(':selected').val(),
+        $('#q3').find(':selected').val(),
+        $('#q4').find(':selected').val(),
+        $('#q5').find(':selected').val(),
+        $('#q6').find(':selected').val(),
+        $('#q7').find(':selected').val(),
+        $('#q8').find(':selected').val(),
+        $('#q9').find(':selected').val(),
+        $('#q10').find(':selected').val(),
+        
+    ]
+
+);
+$.post("/api/buddy", newBuddy).then(
+    function(data){
+        console.log(data);
+        alert("added buddy");
+    }
+)
+        })
+        </script>
     </body>
 </html>
