@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>FriendFinder</title>
+        <title>jamBuddies</title>
 
         <!-- Latest compiled and minified CSS & JS -->
         <link
@@ -42,7 +42,7 @@
 
             <h3><strong>Question 1</strong></h3>
             <h4>
-                Your mind is always buzzing with unexplored ideas and plans.
+                You are a fan of loud and fast music.
             </h4>
             <select class="chosen-select" id="q1">
                 <option value=""></option>
@@ -55,8 +55,8 @@
 
             <h3><strong>Question 2</strong></h3>
             <h4>
-                Generally speaking, you rely more on your experience than your
-                imagination.
+                You like to challenge your current skills by learning difficult
+                music.
             </h4>
             <select class="chosen-select" id="q2">
                 <option value=""></option>
@@ -69,8 +69,7 @@
 
             <h3><strong>Question 3</strong></h3>
             <h4>
-                You find it easy to stay relaxed and focused even when there is
-                some pressure.
+                You love to improvise your way through music.
             </h4>
             <select class="chosen-select" id="q3">
                 <option value=""></option>
@@ -82,7 +81,7 @@
             </select>
 
             <h3><strong>Question 4</strong></h3>
-            <h4>You rarely do something just out of sheer curiosity.</h4>
+            <h4>You rather study the music and memorise each part.</h4>
             <select class="chosen-select" id="q4">
                 <option value=""></option>
                 <option value="1">1 (Strongly Disagree)</option>
@@ -93,7 +92,7 @@
             </select>
 
             <h3><strong>Question 5</strong></h3>
-            <h4>People can rarely upset you.</h4>
+            <h4>You rather play other people's music.</h4>
             <select class="chosen-select" id="q5">
                 <option value=""></option>
                 <option value="1">1 (Strongly Disagree)</option>
@@ -105,8 +104,7 @@
 
             <h3><strong>Question 6</strong></h3>
             <h4>
-                It is often difficult for you to relate to other people’s
-                feelings.
+                You rather write your own music.
             </h4>
             <select class="chosen-select" id="q6">
                 <option value=""></option>
@@ -119,8 +117,7 @@
 
             <h3><strong>Question 7</strong></h3>
             <h4>
-                In a discussion, truth should be more important than people’s
-                sensitivities.
+                It's nice to be able to show off on stage.
             </h4>
             <select class="chosen-select" id="q7">
                 <option value=""></option>
@@ -132,7 +129,7 @@
             </select>
 
             <h3><strong>Question 8</strong></h3>
-            <h4>You rarely get carried away by fantasies and ideas.</h4>
+            <h4>Playing music is all you want to do.</h4>
             <select class="chosen-select" id="q8">
                 <option value=""></option>
                 <option value="1">1 (Strongly Disagree)</option>
@@ -144,8 +141,7 @@
 
             <h3><strong>Question 9</strong></h3>
             <h4>
-                You think that everyone’s views should be respected regardless
-                of whether they are supported by facts or not.
+                You have a business mindset towards your music.
             </h4>
             <select class="chosen-select" id="q9">
                 <option value=""></option>
@@ -158,8 +154,7 @@
 
             <h3><strong>Question 10</strong></h3>
             <h4>
-                You feel more energetic after spending time with a group of
-                people.
+                You think Lars Ulrich is the worst drummer alive.
             </h4>
             <select class="chosen-select" id="q10">
                 <option value=""></option>
@@ -176,7 +171,7 @@
             <!-- Submit Button -->
             <button
                 type="submit"
-                class="btn btn-primary btn-lg btn-block"
+                class="btn btn-danger btn-lg btn-block"
                 id="submit"
             >
                 <i class="fa fa-check-circle" aria-hidden="true"></i> Submit
@@ -186,8 +181,10 @@
             <footer class="footer">
                 <div class="container">
                     <p>
-                        <a href="/api/friends">API Friends List</a> |
-                        <a href="https://github.com/afhaque/friendfinder"
+                        <a href="/api/buddy">API Buddies List</a> |
+                        <a
+                            target="_blank"
+                            href="https://github.com/wesbragagt/jamBuddy"
                             >GitHub Repo</a
                         >
                     </p>
@@ -214,7 +211,8 @@
                         <h2 id="match-name"></h2>
                         <img
                             id="match-img"
-                            src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg"
+                            class="img-responsive"
+                            src=""
                             alt=""
                         />
                     </div>
@@ -231,28 +229,8 @@
             </div>
         </div>
 
+        <!-- <script src="./../app.js"></script> -->
         <script type="text/javascript">
-            // Chosen CSS
-            var config = {
-                ".chosen-select": {},
-                ".chosen-select-deselect": {
-                    allow_single_deselect: true
-                },
-                ".chosen-select-no-single": {
-                    disable_search_threshold: 10
-                },
-                ".chosen-select-no-results": {
-                    no_results_text: "Oops, nothing found!"
-                },
-                ".chosen-select-width": {
-                    width: "95%"
-                }
-            };
-
-            for (var selector in config) {
-                $(selector).chosen(config[selector]);
-            }
-
             // Capture the form inputs
             $("#submit").on("click", function(event) {
                 event.preventDefault();
@@ -297,12 +275,10 @@
                     // AJAX post the data to the friends API.
                     $.post("/api/buddy", newBuddy, function(data) {
                         // Grab the result from the AJAX post so that the best match's name and photo are displayed.
+                        // console.log(data);
                         $("#match-name").text(data.name);
                         $("#match-img").attr("src", data.photo);
-
-                        // Show the modal with the best match
                         $("#results-modal").modal("toggle");
-                        console.log(newBuddy);
                     });
                 } else {
                     alert("Please fill out all fields before submitting!");

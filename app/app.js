@@ -41,7 +41,8 @@ $("#submit").on("click", function(event) {
 
         // AJAX post the data to the friends API.
         $.post("/api/buddy", newBuddy, function(data) {
-            console.log(newBuddy);
+            // Grab the result from the AJAX post so that the best match's name and photo are displayed.
+            console.log(data);
         });
     } else {
         alert("Please fill out all fields before submitting!");
